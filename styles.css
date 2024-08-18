@@ -775,29 +775,33 @@ background-repeat: no-repeat;
 }
 
 .chat-header {
-    background-color: #007b;
+    background-color: #3a9eb8;
     color: white;
     padding:5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
  .chat-header button {
     background: none;
-    
     color: white;
-    
-    
     margin: 0px;
 } 
-
+#chatWindow.chat-window.open{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 .image-container {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
     padding-top: 0px;
+  
 }
+
 
 .image-item {
     margin-bottom: 15px;
