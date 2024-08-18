@@ -115,20 +115,8 @@ input[type="text"]:focus {
 
             resultDiv.innerHTML = message;
         }
-    }
-    // let startQnumber = "1";
-    // function validateNumber(input) {
-    //     const value = input.value;
-    //     if (isNaN(value) || value === "") {
-    //         input.value = 1;
-    //     }
-    //     startQnumber = document.getElementById('numberInput').value;
-    //     startQnumber = parseInt(startQnumber, 10);
-    //     // startQnumber -= 1;
-    // }
-
-
     
+    }
     function validateNumber(input) {
         const value = input.value;
         if (isNaN(value) || value === "") {
@@ -137,8 +125,6 @@ input[type="text"]:focus {
        
        
     }
-
-
     function validateNumberTime(input) {
         const value = input.value;
         if (isNaN(value) || value === "") {
@@ -146,8 +132,6 @@ input[type="text"]:focus {
         }
        
     }
-
-    
 
 </script>
 </head>
@@ -160,38 +144,25 @@ input[type="text"]:focus {
             <span>Photos</span>
             <button id="closeChat">&times;</button>
         </div>
+
+
+
         <div class="image-container">
-            <div class="image-item">
-                <p>Photo 1 Description</p>
-                <img src="1p.jpg" alt="Photo 1">
-            </div>
-            <div class="image-item">
-                <p>Photo 2 Description</p>
-                <img src="2p.jpg" alt="Photo 2">
-            </div>
-            <div class="image-item">
-                <p>Photo 3 Description</p>
-                <img src="3p.jpg" alt="Photo 3">
-            </div>
-            <div class="image-item">
-                <p>Photo 4 Description</p>
-                <img src="4p.jpg" alt="Photo 4">
-            </div>
-            <div class="image-item">
-                <p>Photo 4 Description</p>
-                <img src="5p.jpg" alt="Photo 4">
-            </div>
-            <div class="image-item">
-                <p>Photo 4 Description</p>
-                <img src="6p.jpg" alt="Photo 4">
-            </div>
-            <div class="image-item">
-                <p>Photo 4 Description</p>
-                <img src="7p.jpg" alt="Photo 4">
-            </div>
+            <img src="1p.jpg" alt="Photo 1">
+            <img src="2p.jpg" alt="Photo 2">
+            <img src="3p.jpg" alt="Photo 3">
+            <img src="4p.jpg" alt="Photo 4">
+
+           
             
         </div>
     </div>
+
+
+
+
+
+
     <div id="overlay" class="overlay"></div>
 
 
@@ -257,16 +228,7 @@ input[type="text"]:focus {
     <div class="scroll-to-bottom"></div>
     <script src="script.js"></script>
     <script>
-        // let uploaded = false;
-        // function previewImage(event) {
-        //     var reader = new FileReader();
-        //     reader.onload = function () {
-        //         var output = document.getElementById('image-preview');
-        //         output.innerHTML = '<img src="' + reader.result + '" alt="Uploaded Image">';
-        //         uploaded = true;
-        //     };
-        //     reader.readAsDataURL(event.target.files[0]);
-        // }
+      
         window.addEventListener('beforeunload', function (e) {
             if (uploaded) {
                 e.preventDefault();
@@ -316,12 +278,11 @@ submitBtn.addEventListener('click', function() {
         behavior: 'smooth'
     });
 });
-});
-
-
-    
+});   
 </script>
-     <script>
+
+
+ <script>
         function checkLoginStatus() {
             const isLoggedIn = sessionStorage.getItem("isLoggedIn");
             if (!isLoggedIn) {
@@ -331,6 +292,6 @@ submitBtn.addEventListener('click', function() {
         window.addEventListener("DOMContentLoaded", () => {
             checkLoginStatus();
         });
-    </script> 
+</script> 
 </body>
 </html>
