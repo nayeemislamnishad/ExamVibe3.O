@@ -676,3 +676,229 @@ hr {
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
 }
+
+#animated-image {
+    width: 100%; /* Adjust according to your need */
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+#hiddenDiv {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+#hiddenDiv.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#hiddenDiv img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+#hiddenDiv img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#hiddenDiv img:focus {
+    outline: 2px solid #007bff;
+}
+
+.chat-bubble {
+    width: 67px;
+    height: 67px;
+    
+    color:darkred;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    user-select: none;
+    transition: transform 0.3s;
+    font-size:15px;
+    font-weight: bold;
+    border: 3px solid darkred;
+background-image: url("pop_q_papers.jpg");
+background-size:cover;
+background-repeat: no-repeat;
+
+}
+
+.chat-window {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    z-index: 1001;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s, transform 0.3s;
+    
+}
+
+.chat-window.open {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.chat-header {
+    background-color: #007b;
+    color: white;
+    padding:5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ .chat-header button {
+    background: none;
+    
+    color: white;
+    
+    
+    margin: 0px;
+} 
+
+.image-container {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    padding-top: 0px;
+}
+
+.image-item {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.image-item p {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: none;
+    z-index: 1000;
+}
+/* Style for the chat bubble */
+.chat-bubble {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    left: 10px;   /* Adjust as needed */
+    cursor: pointer;
+    padding: 10px;
+    background: #3a9eb8;
+    color: white;
+    border-radius: 50%;
+    border-color: #3a9eb8;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add any other styling you need */
+}
+
+/* Style for the image box */
+.image-box {
+    position: absolute;
+    display: none; /* Initially hidden */
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the chat bubble */
+#chatBubble {
+    position: fixed; /* Fixes the position relative to the viewport */
+    bottom: 10px; /* Positions the bubble 10px from the bottom */
+    left: 10px; /* Adjust this value as needed to position horizontally */
+    z-index: 1000; /* Ensures the bubble stays on top of other elements */
+    background-color: #3a9eb8; /* Adjust the color as needed */
+    color: white; /* Text color */
+    padding: 10px; /* Add padding around the text */
+    border-radius: 50px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+   
+}
+
+/* Optional: Add styles for when the bubble is being dragged */
+#chatBubble.dragging {
+    cursor: move; /* Change cursor when dragging */
+}
+/* Styles for the chat bubble */
+#chatBubble {
+    position: fixed; /* Fixes the position relative to the viewport */
+    top: 10px; /* Positions the bubble 10px from the top */
+    right: 10px; /* Positions the bubble 10px from the right */
+    z-index: 1000; /* Ensures the bubble stays on top of other elements */
+    
+}
+
+/* Optional: Add styles for when the bubble is being dragged */
+#chatBubble.dragging {
+    cursor: move; /* Change cursor when dragging */
+}
+.chat-icon-container {
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Makes the div circular */
+    position: fixed;
+    top: 20px; /* Adjust the position as needed */
+    right: 20px; /* Adjust the position as needed */
+    cursor: pointer;
+}
+
+.chat-icon-container i {
+    font-size: 24px;
+}
+
