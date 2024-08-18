@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('answerSheet').style.display = 'none';
     document.getElementById('timer').style.display = 'none';
     document.getElementById('headerBox').style.display = 'none';
+    document.getElementById('chatBubble').style.display="none";
     
     var ddddd = document.getElementById('generatedText');
     
@@ -283,6 +284,9 @@ designSb.onmouseout = function() {
 
     document.getElementById('answerSheet').style.display = 'block';
     document.getElementById('timer').style.display = 'block';
+    document.getElementById('chatBubble').style.display="block";
+    // document.getElementById('chatBubble').style.padding="2px";
+    document.getElementById('chatBubble').style.textAlign="center";
     const timerDisplay = document.getElementById('timer');
     startTimer(timerDuration * 60, timerDisplay);
     totalCount = parseInt(questionNumber);
@@ -425,6 +429,140 @@ async function submitAnswers() {
     };
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatBubble = document.getElementById('chatBubble');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const overlay = document.getElementById('overlay');
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    // Function to handle both mouse and touch move events
+    function handleMove(event) {
+        if (isDragging) {
+            const currentX = event.clientX || event.touches[0].clientX;
+            const currentY = event.clientY || event.touches[0].clientY;
+
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Get bubble dimensions
+            const bubbleWidth = chatBubble.offsetWidth;
+            const bubbleHeight = chatBubble.offsetHeight;
+
+            // Calculate new position with boundary constraints
+            let newX = currentX - offsetX;
+            let newY = currentY - offsetY;
+
+            // Apply boundary constraints
+            if (newX < 0) newX = 0;
+            if (newY < 0) newY = 0;
+            if (newX + bubbleWidth > viewportWidth) newX = viewportWidth - bubbleWidth;
+            if (newY + bubbleHeight > viewportHeight) newY = viewportHeight - bubbleHeight;
+
+            chatBubble.style.left = `${newX}px`;
+            chatBubble.style.top = `${newY}px`;
+            chatBubble.style.bottom = 'auto';
+            chatBubble.style.right = 'auto';
+        }
+    }
+
+    // Function to open/close chat window
+    function toggleChatWindow() {
+        chatWindow.classList.toggle('open');
+        if (chatWindow.classList.contains('open')) {
+            chatWindow.style.display = 'flex';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                chatWindow.style.opacity = '1';
+                chatWindow.style.transform = 'scale(1)';
+            }, 10);
+        } else {
+            chatWindow.style.opacity = '0';
+            chatWindow.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                chatWindow.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    // Toggle chat window visibility on bubble click
+    chatBubble.addEventListener('click', (event) => {
+        toggleChatWindow();
+        event.stopPropagation(); // Prevent bubbling to body
+    });
+
+    // Close chat window on overlay click
+    overlay.addEventListener('click', () => {
+        toggleChatWindow();
+    });
+
+    // Dragging the chat bubble
+    chatBubble.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        offsetX = event.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = event.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMove);
+        });
+    });
+
+    // Touch events for dragging on mobile devices
+    chatBubble.addEventListener('touchstart', (event) => {
+        isDragging = true;
+        const touch = event.touches[0];
+        offsetX = touch.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = touch.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('touchmove', handleMove);
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            document.removeEventListener('touchmove', handleMove);
+        });
+    });
+
+    // Close chat window on close button click
+    closeChat.addEventListener('click', (event) => {
+        toggleChatWindow();
+        event.stopPropagation(); // Prevent bubbling to body
+    });
+
+    // Prevent chat window from closing on internal clicks
+    chatWindow.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    // Function to close chat window when clicking anywhere inside it
+    chatWindow.addEventListener('click', () => {
+        toggleChatWindow();
+    });
+
+    // Function to close chat window when clicking on overlay
+    overlay.addEventListener('click', () => {
+        toggleChatWindow();
+    });
+
+    // Function to close chat window
+    function closeChatWindow() {
+        chatWindow.classList.remove('open');
+        chatWindow.style.opacity = '0';
+        chatWindow.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            chatWindow.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 300);
+    }
+});
+
+
+
 function getFeedbackMessage(marks) {
     if (marks >= 85 && marks <= 100) {
         return `Very good`;
@@ -449,12 +587,6 @@ window.onbeforeunload = function () {
         return "Are you sure you want to leave? Your answers will be lost.";
     }
 };
-
-
-
-
-
-
 
 
 
