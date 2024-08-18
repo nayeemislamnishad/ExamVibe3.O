@@ -152,6 +152,54 @@ input[type="text"]:focus {
 </script>
 </head>
 <body>
+    <div id="chatBubble" class="chat-bubble chat-icon-container">
+        <i class="fas fa-comments"></i>
+    </div>
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <span>Photos</span>
+            <button id="closeChat">&times;</button>
+        </div>
+        <div class="image-container">
+            <div class="image-item">
+                <p>Photo 1 Description</p>
+                <img src="1p.jpg" alt="Photo 1">
+            </div>
+            <div class="image-item">
+                <p>Photo 2 Description</p>
+                <img src="2p.jpg" alt="Photo 2">
+            </div>
+            <div class="image-item">
+                <p>Photo 3 Description</p>
+                <img src="3p.jpg" alt="Photo 3">
+            </div>
+            <div class="image-item">
+                <p>Photo 4 Description</p>
+                <img src="4p.jpg" alt="Photo 4">
+            </div>
+            <div class="image-item">
+                <p>Photo 4 Description</p>
+                <img src="5p.jpg" alt="Photo 4">
+            </div>
+            <div class="image-item">
+                <p>Photo 4 Description</p>
+                <img src="6p.jpg" alt="Photo 4">
+            </div>
+            <div class="image-item">
+                <p>Photo 4 Description</p>
+                <img src="7p.jpg" alt="Photo 4">
+            </div>
+            
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+
+
+
+
+
+
     <div id="customAlert" class="custom-alert">
         <div class="alert-content" id="alertContent"></div>
         <button class="alert-button" onclick="resolveCustomAlert()">OK</button>
@@ -185,19 +233,7 @@ input[type="text"]:focus {
             </div>
         </div>
         
-        
-
-
-        <!-- <div id="needToKnow">    in case of reverse
-            <p>আপনি যে প্রশ্নটিতে পরীক্ষা দিতে যাচ্ছেন সে প্রশ্নটির সঠিক উত্তর গুলো আগেই এখানে সেট করে দিন। উত্তরগুলো reverse করে দিন। <br> উদাহরণ : যদি ১,২,৩,৪ ও ৫ নম্বরের সঠিক উত্তরগুলো যথাক্রমে এমন হয় যে : dacba তবে আপনাকে বক্সে উত্তর গুলো সেট করে নিতে হবে এভাবে : abcad(reverse mode)। <br> আপনাকে আর কিছুই করতে হবে না ।শুধু  generate AnswerSheet এ ক্লিক করলেই আপনার পরিক্ষা শুরু হয়ে যাবে।</p>
-        </div> -->
-
-
-        <!-- <label for="numberInput" id="numberInputText"><b>Enter the starting question Number:</b></label>
-        <input type="text" id="numberInput" value="1" oninput="validateNumber(this)">
-        <label for="timePerQuestion" id="timePerQuestionText"><b>Enter time per question (seconds):</b></label>
-        <input type="text" id="timePerQuestion" value="20"> -->
-
+    
         <div class="form-group">
             <label for="numberInput" id="numberInputText">Enter the starting question Number:</label>
             <input type="text" id="numberInput" value="1" oninput="validateNumber(this)">
@@ -221,16 +257,16 @@ input[type="text"]:focus {
     <div class="scroll-to-bottom"></div>
     <script src="script.js"></script>
     <script>
-        let uploaded = false;
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var output = document.getElementById('image-preview');
-                output.innerHTML = '<img src="' + reader.result + '" alt="Uploaded Image">';
-                uploaded = true;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
+        // let uploaded = false;
+        // function previewImage(event) {
+        //     var reader = new FileReader();
+        //     reader.onload = function () {
+        //         var output = document.getElementById('image-preview');
+        //         output.innerHTML = '<img src="' + reader.result + '" alt="Uploaded Image">';
+        //         uploaded = true;
+        //     };
+        //     reader.readAsDataURL(event.target.files[0]);
+        // }
         window.addEventListener('beforeunload', function (e) {
             if (uploaded) {
                 e.preventDefault();
@@ -247,7 +283,45 @@ input[type="text"]:focus {
             });
         });
     </script>
-    <script>
+
+
+<script>
+    let uploaded = false;
+
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('image-preview');
+            output.innerHTML = '<img src="' + reader.result + '" alt="Uploaded Image">';
+            uploaded = true;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    window.addEventListener('beforeunload', function (e) {
+        if (uploaded) {
+            e.preventDefault();
+            e.returnValue = '';
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+const submitBtn = document.getElementById('submittext');
+
+submitBtn.addEventListener('click', function() {
+    // Scroll to the bottom of the page
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+});
+});
+
+
+    
+</script>
+     <script>
         function checkLoginStatus() {
             const isLoggedIn = sessionStorage.getItem("isLoggedIn");
             if (!isLoggedIn) {
@@ -257,6 +331,6 @@ input[type="text"]:focus {
         window.addEventListener("DOMContentLoaded", () => {
             checkLoginStatus();
         });
-    </script>
+    </script> 
 </body>
 </html>
