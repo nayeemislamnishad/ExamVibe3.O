@@ -254,11 +254,11 @@ button:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 47px;
-    height: 47px;
+    width: 48px;
+    height: 48px;
     border: 2px solid #0000009c;
     border-radius: 50%; /* Makes the shape a circle */
-    margin: 0 7px;
+    margin: 0 10px;
     font-size: 30px;
     cursor: pointer;
   margin-top:5px;
@@ -957,3 +957,9 @@ button#closeChat{
     font-size: 24px;
 }
 
+.option.incorrect{
+    border-color: red;
+}
+.option.correct{
+    border-color:#15cd15;
+}
