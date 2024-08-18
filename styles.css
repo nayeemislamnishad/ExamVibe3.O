@@ -783,6 +783,7 @@ background-repeat: no-repeat;
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    height: 35px;
 }
 
  .chat-header button {
@@ -796,29 +797,79 @@ background-repeat: no-repeat;
 }
 .image-container {
     flex: 1;
-    padding: 10px;
+    padding: 0px;
     overflow-y: auto;
-    padding-top: 0px;
+    margin-bottom: 15px;
+    text-align: center;
   
 }
 
+.image-container {
+    width: 300px;
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #066182 #f2f7f2; /* For Firefox */
+    position: relative;
+}
 
+.image-container::-webkit-scrollbar {
+    width: 14px; /* Increase width for a more prominent scrollbar */
+}
+
+.image-container::-webkit-scrollbar-track {
+    background: #f2f7f2; /* Light background for the track */
+    border-radius: 10px; /* Rounded corners for the track */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle inner shadow for depth */
+}
+
+.image-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #066182, #a8d5e2); /* Diagonal gradient for a different effect */
+    border-radius: 20px; /* More rounded corners for a pill-like shape */
+    border: 3px solid #f2f7f2; /* Thicker border for spacing */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2), /* Inner shadow for depth */
+                0 2px 5px rgba(0, 0, 0, 0.3); /* Outer shadow for a floating effect */
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.image-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #022f43, #066182); /* Darker gradient on hover */
+    transform: scale(1.1); /* Slightly enlarge the thumb on hover */
+}
+
+.image-container::-webkit-scrollbar-corner {
+    background-color: transparent; /* Optional: Make the bottom corner (where scrollbars meet) transparent */
+   
+}
+
+
+/* 
 .image-item {
     margin-bottom: 15px;
     text-align: center;
-}
+} */
 
 .image-item p {
     margin: 0 0 5px 0;
     font-size: 14px;
     color: #333;
+   
+}
+div.image-container{
+    margin: 0px;
 }
 
-.image-item img {
+.image-container img {
     width: 100%;
     height: auto;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
+    padding: 0px;
+    margin: 0px;
+}
+button#closeChat{
+    font-size: 35px;
+    
 }
 
 .overlay {
